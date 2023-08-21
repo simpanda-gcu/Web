@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:provider/provider.dart';
+import 'package:simpanda_idea1/main.dart';
 import 'package:simpanda_idea1/src/fragment/bounce.dart';
 import 'package:simpanda_idea1/src/fragment/bounce_grey.dart';
+import 'package:simpanda_idea1/src/provider/ui_provider.dart';
 
 import '../provider/festival_provider.dart';
+import '../screen/festival_screen.dart';
 import '../theme/theme.dart';
 
 class FestivalCard extends StatelessWidget {
@@ -32,12 +36,12 @@ class FestivalCard extends StatelessWidget {
   Widget build(BuildContext context) {
 
     FestivalProvider festivalProvider = Provider.of<FestivalProvider>(context);
+    UiProvider uiProvider = Provider.of<UiProvider>(context);
 
     return BounceGrey(
       onTap: () {
-        print(pk);
         festivalProvider.setNowFestival = pk;
-        Navigator.pushNamed(context, '/festival', arguments: pk);
+        Get.rootDelegate.toNamed(Routes.FESTIVAL);
       },
       paddingHorizontal: 20,
       paddingVertical: 20,
