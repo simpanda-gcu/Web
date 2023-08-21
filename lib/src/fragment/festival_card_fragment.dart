@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 import 'package:simpanda_idea1/src/fragment/bounce.dart';
 import 'package:simpanda_idea1/src/fragment/bounce_grey.dart';
 
+import '../provider/festival_provider.dart';
 import '../theme/theme.dart';
 
 class FestivalCard extends StatelessWidget {
   const FestivalCard({
     Key? key,
+    required this.pk,
     required this.title,
     required this.startDate,
     required this.endDate,
@@ -16,6 +19,7 @@ class FestivalCard extends StatelessWidget {
     required this.participateNum
   }) : super(key: key);
 
+  final int pk;
   final String title;
   final String startDate;
   final String endDate;
@@ -26,8 +30,15 @@ class FestivalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    FestivalProvider festivalProvider = Provider.of<FestivalProvider>(context);
+
     return BounceGrey(
-      onTap: () {},
+      onTap: () {
+        print(pk);
+        festivalProvider.setNowFestival = pk;
+        Navigator.pushNamed(context, '/festival', arguments: pk);
+      },
       paddingHorizontal: 20,
       paddingVertical: 20,
       scale: 0.98,

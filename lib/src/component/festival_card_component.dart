@@ -8,6 +8,7 @@ class FestivalCardComponent implements Component {
   @override
   Widget compose(Map<String, dynamic> args, BuildContext context) {
     return FestivalCard(
+        pk: args['pk'],
         title: args['title'],
         startDate: args['start_date'],
         endDate: args['end_date'],
