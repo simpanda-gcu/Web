@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
 class ColorTheme {
-  static const Color greyLightest = Color(0xffF7F9FC);
+  static const Color greyLightest = Color(0xffF4F6F9);
   static const Color greyLight = Color(0xffD8DADF);
   static const Color greyPoint = Color(0xffA4A5A8);
   static const Color blackLight = Color(0xff393D44);

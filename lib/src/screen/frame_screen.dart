@@ -6,7 +6,7 @@ import 'package:simpanda_idea1/src/cross_platform_svg.dart';
 import 'package:simpanda_idea1/src/fragment/bounce_grey.dart';
 import 'package:simpanda_idea1/src/provider/ui_provider.dart';
 import 'package:simpanda_idea1/src/screen/apply_list_screen.dart';
-import 'package:simpanda_idea1/src/screen/festival_screen.dart';
+import 'package:simpanda_idea1/src/screen/festival_list_screen.dart';
 import 'package:simpanda_idea1/src/screen/profile_screen.dart';
 import 'package:simpanda_idea1/src/theme/theme.dart';
 
@@ -24,10 +24,10 @@ class FrameScreen extends StatelessWidget {
           Expanded(
             child: (() {
               switch (uiProvider.page) {
-                case 0: return const FestivalScreen();
+                case 0: return const FestivalListScreen();
                 case 1: return const ApplyListScreen();
                 case 2: return const ProfileScreen();
-                default: return const FestivalScreen();
+                default: return const FestivalListScreen();
               }
             })()
           ),
