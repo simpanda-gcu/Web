@@ -51,7 +51,7 @@ abstract class AppPages {
     GetPage(
       name: Routes.HOME,
       page: () => const DesktopScreen(screen: FrameScreen(),),
-      transition: Transition.noTransition
+      transition: Transition.fade
     ),
     GetPage(
       name: Routes.LOGIN,
@@ -60,7 +60,7 @@ abstract class AppPages {
     GetPage(
       name: Routes.FESTIVAL,
       page: () => const DesktopScreen(screen: FestivalScreen()),
-      transition: Transition.noTransition
+      transition: Transition.fade
     ),
     GetPage(
       name: Routes.FESTIVAL_LIST,
