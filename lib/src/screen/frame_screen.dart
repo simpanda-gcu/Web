@@ -24,10 +24,10 @@ class FrameScreen extends StatelessWidget {
           Expanded(
             child: (() {
               switch (uiProvider.page) {
-                case 0: return const FestivalListScreen();
+                case 0: return FestivalListScreen();
                 case 1: return const ApplyListScreen();
                 case 2: return const ProfileScreen();
-                default: return const FestivalListScreen();
+                default: return FestivalListScreen();
               }
             })()
           ),

@@ -5,7 +5,7 @@ class FestivalProvider extends ChangeNotifier {
   final List<Festival> _festivals = [
     Festival(
       pk: 0,
-      thumbnail: "https://media.disquiet.io/images/product/gallery/aa7371209549f1a361942f86442009035f35e8a31e9494a9dbd5715bb37f36cf",
+      thumbnail: "https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Ff6d6a8d1-4009-4cd6-a39c-cfab4294b57e%2F%EC%9D%B4%EB%AF%B8%EC%A7%80_(1).png&blockId=088c5c4e-a0ce-4426-be4e-56ebfc7eb183",
       title: "1st NE(O)RDINARY DemoDAY",
       startDate: "09월 08일(금) 10:00",
       endDate: "09월 09일(토) 20:00",

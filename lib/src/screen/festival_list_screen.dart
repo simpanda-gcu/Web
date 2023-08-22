@@ -6,18 +6,15 @@ import 'package:simpanda_idea1/src/fragment/festival_card_fragment.dart';
 import 'package:simpanda_idea1/src/provider/festival_provider.dart';
 import 'package:simpanda_idea1/src/provider/ui_provider.dart';
 import 'package:simpanda_idea1/src/theme/theme.dart';
-
 import '../component/registry.dart';
 
 class FestivalListScreen extends StatelessWidget {
-  const FestivalListScreen({Key? key}) : super(key: key);
+  FestivalListScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    UiProvider uiProvider = Provider.of<UiProvider>(context);
     FestivalProvider festivalProvider = Provider.of<FestivalProvider>(context);
-
     return Container(
       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       color: Colors.white,
