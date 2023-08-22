@@ -9,6 +9,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:simpanda_idea1/src/provider/festival_provider.dart';
 import 'package:simpanda_idea1/src/provider/ui_provider.dart';
 import 'package:simpanda_idea1/src/screen/desktop_screen.dart';
+import 'package:simpanda_idea1/src/screen/router_screen.dart';
 import 'package:simpanda_idea1/src/screen/festival_list_screen.dart';
 import 'package:simpanda_idea1/src/screen/festival_screen.dart';
 import 'package:simpanda_idea1/src/screen/frame_screen.dart';
@@ -34,9 +35,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    UiProvider uiProvider = Provider.of<UiProvider>(context);
-
-    return DesktopScreen(screen: const FrameScreen());
+    return RouterScreen();
   }
 }
 
@@ -51,19 +50,34 @@ abstract class AppPages {
   static final pages = [
     GetPage(
       name: Routes.HOME,
-      page: () => const FrameScreen(),
+      page: () => const DesktopScreen(screen: FrameScreen(),),
+      transition: Transition.noTransition
     ),
     GetPage(
       name: Routes.LOGIN,
-      page: () => const LoginScreen(),
+      page: () => const DesktopScreen(screen: LoginScreen()),
     ),
     GetPage(
       name: Routes.FESTIVAL,
-      page: () => const FestivalScreen(),
+      page: () => const DesktopScreen(screen: FestivalScreen()),
+      transition: Transition.noTransition
     ),
     GetPage(
       name: Routes.FESTIVAL_LIST,
       page: () => FestivalListScreen()
     )
   ];
+}
+
+class DesktopRouterDelegate extends GetDelegate {
+
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      onPopPage: (route, result) => route.didPop(result),
+      pages: currentConfiguration != null
+          ? [currentConfiguration!.currentPage!]
+          : [GetNavConfig.fromRoute(Routes.HOME)!.currentPage!],
+    );
+  }
 }

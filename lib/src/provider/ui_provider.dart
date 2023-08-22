@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 import 'package:simpanda_idea1/src/screen/frame_screen.dart';
 
 import '../../main.dart';
