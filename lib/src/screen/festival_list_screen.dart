@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -6,47 +9,50 @@ import 'package:simpanda_idea1/src/fragment/festival_card_fragment.dart';
 import 'package:simpanda_idea1/src/provider/festival_provider.dart';
 import 'package:simpanda_idea1/src/provider/ui_provider.dart';
 import 'package:simpanda_idea1/src/theme/theme.dart';
-import '../component/registry.dart';
+
+import '../fragment/bounce.dart';
+import '../model/Festival.dart';
 
 class FestivalListScreen extends StatelessWidget {
-  FestivalListScreen({Key? key}) : super(key: key);
+  const FestivalListScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
     FestivalProvider festivalProvider = Provider.of<FestivalProvider>(context);
+
     return Container(
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
       color: Colors.white,
       width: double.infinity,
-      child: ListView(
-        children: [
-          const SizedBox(height: 50),
-          Row(
-            children: [
-              const SizedBox(width: 20),
-              Text("오프라인 행사", style: FontTheme.title,),
-            ],
-          ),
-          const SizedBox(height: 30),
-          Column(
-            children: [
-              for (int i = 0; i < 3; i++)
-                FestivalCard(
-                    pk: festivalProvider.festival(i).pk,
-                    title: festivalProvider.festival(i).title,
-                    startDate: festivalProvider.festival(i).startDate,
-                    endDate: festivalProvider.festival(i).endDate,
-                    thumbnail: festivalProvider.festival(i).thumbnail,
-                    personImg: festivalProvider.festival(i).personImg,
-                    personName: festivalProvider.festival(i).personName,
-                    participateNum: festivalProvider.festival(i).participateNum
-                )
-            ]
-          ),
-          const SizedBox(height: 30)
-        ]
-      ),
+      child: CarouselSlider.builder(
+        options: CarouselOptions(
+          height: double.infinity,
+          viewportFraction: 1,
+          enableInfiniteScroll: false
+        ),
+        itemCount: 3,
+        itemBuilder: (context, itemIndex, pageViewIndex) {
+          return ListView.builder(
+              itemCount: festivalProvider.festivals.length,
+              itemBuilder: (context, festivalIndex) {
+                Festival festival = festivalProvider.festival(festivalIndex);
+                return FestivalCard(
+                  pk: festival.pk,
+                  thumbnail: festival.thumbnail,
+                  title: festival.title,
+                  startDate: festival.startDate,
+                  endDate: festival.endDate,
+                  participation: festival.participation,
+                  personImg: festival.personImg,
+                  participateNum: festival.participateNum,
+                  summary: festival.summary,
+                  desc: festival.desc,
+                  link: festival.link,
+                );
+              }
+          );
+        },
+      )
     );
   }
 }

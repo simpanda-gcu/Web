@@ -24,10 +24,10 @@ class FrameScreen extends StatelessWidget {
           Expanded(
             child: (() {
               switch (uiProvider.page) {
-                case 0: return FestivalListScreen();
+                case 0: return const FestivalListScreen();
                 case 1: return const ApplyListScreen();
                 case 2: return const ProfileScreen();
-                default: return FestivalListScreen();
+                default: return const FestivalListScreen();
               }
             })()
           ),
@@ -41,7 +41,6 @@ class FrameScreen extends StatelessWidget {
     return Container(
       width: double.infinity,
       color: ColorTheme.blackPoint,
-      padding: const EdgeInsets.all(6),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -82,7 +81,7 @@ class FrameScreen extends StatelessWidget {
                   child: Image.asset("asset/person1.png", width: 30,)
                 ),
               ) :
-              SvgPicture.asset("asset/$icon", width: 30),
+              SvgPicture.asset("asset/$icon", width: 25),
           const SizedBox(height: 5,),
           Text(text, style: const TextStyle(fontWeight: FontWeight.w600, color: Colors.white, fontSize: 10),)
         ]
