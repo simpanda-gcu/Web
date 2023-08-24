@@ -48,6 +48,10 @@
           serviceWorkerVersion: serviceWorkerVersion,
         },
         onEntrypointLoaded: function(engineInitializer) {
+          let config = {
+              // uses Color Emoji font
+              useColorEmoji: true,
+           };
           engineInitializer.initializeEngine().then(function(appRunner) {
             appRunner.runApp();
           });

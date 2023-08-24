@@ -1,13 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
-import 'package:simpanda_idea1/main.dart';
-import 'package:simpanda_idea1/src/fragment/bounce.dart';
 import 'package:simpanda_idea1/src/fragment/bounce_grey.dart';
 import 'package:simpanda_idea1/src/provider/ui_provider.dart';
 
+import '../../router.dart';
 import '../provider/festival_provider.dart';
-import '../screen/festival_screen.dart';
 import '../theme/theme.dart';
 
 class FestivalCard extends StatelessWidget {
@@ -19,8 +17,11 @@ class FestivalCard extends StatelessWidget {
     required this.endDate,
     required this.thumbnail,
     required this.personImg,
-    required this.personName,
-    required this.participateNum
+    required this.participation,
+    required this.participateNum,
+    required this.summary,
+    required this.desc,
+    required this.link
   }) : super(key: key);
 
   final int pk;
@@ -29,8 +30,11 @@ class FestivalCard extends StatelessWidget {
   final String endDate;
   final String thumbnail;
   final String personImg;
-  final String personName;
+  final List<String> participation;
   final String participateNum;
+  final String summary;
+  final String desc;
+  final String link;
 
   @override
   Widget build(BuildContext context) {
@@ -41,38 +45,36 @@ class FestivalCard extends StatelessWidget {
     return BounceGrey(
       onTap: () {
         festivalProvider.setNowFestival = pk;
-        Get.rootDelegate.toNamed(Routes.FESTIVAL);
+        FRouter.router.navigateTo(context, Routes.festival);
       },
-      paddingHorizontal: 20,
-      paddingVertical: 20,
+      paddingHorizontal: 15,
+      paddingVertical: 15,
       scale: 0.98,
       child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: BorderRadius.circular(10),
               child: Image.network(thumbnail, width: double.infinity, fit: BoxFit.cover,)
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 13),
             Text(title, style: FontTheme.h2,),
-            const SizedBox(height: 10),
+            const SizedBox(height: 7),
+            Text(summary, style: FontTheme.desc,),
             Text("$startDate ~ $endDate", style: FontTheme.descPoint),
-            const SizedBox(height: 20),
+            const SizedBox(height: 13),
             Row(
                 children: [
-                  Container(
-                    width: 25,
-                    height: 25,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: ColorTheme.greyLight
-                    )
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(25),
+                    child: Image.network(personImg, width: 25, height: 25, fit: BoxFit.cover,)
                   ),
-                  const SizedBox(width: 10),
-                  Text(personName, style: FontTheme.descBold,),
-                  Text("님이 참여해요 · $participateNum")
+                  const SizedBox(width: 7),
+                  Text(participation[0], style: FontTheme.descBold,),
+                  Text("님이 참여해요 · $participateNum", style: FontTheme.desc,)
                 ]
             ),
+            const SizedBox(height: 10)
           ]
       ),
     );

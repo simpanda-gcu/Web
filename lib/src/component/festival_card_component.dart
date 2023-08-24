@@ -14,8 +14,11 @@ class FestivalCardComponent implements Component {
         endDate: args['end_date'],
         thumbnail: args['thumbnail'],
         personImg: args['person_img'],
-        personName: args['person_name'],
-        participateNum: args['participate_num']
+        participation: args['participation'],
+        participateNum: args['participate_num'],
+        summary: args['summary'],
+        desc: args['desc'],
+        link: args['link'],
     );
   }
 }
